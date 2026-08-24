@@ -118,9 +118,9 @@ endif
 GENERATED :=
 OBJECTS :=
 
-GENERATED += $(OBJDIR)/BitBoards.o
+GENERATED += $(OBJDIR)/board.o
 GENERATED += $(OBJDIR)/main.o
-OBJECTS += $(OBJDIR)/BitBoards.o
+OBJECTS += $(OBJDIR)/board.o
 OBJECTS += $(OBJDIR)/main.o
 
 # Rules
@@ -185,7 +185,7 @@ endif
 # File Rules
 # #############################################
 
-$(OBJDIR)/BitBoards.o: src/Game/BitBoards.cpp
+$(OBJDIR)/board.o: src/board.cpp
 	@echo "$(notdir $<)"
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
 $(OBJDIR)/main.o: src/main.cpp
