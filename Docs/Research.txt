@@ -1,0 +1,85 @@
+// extra concepts
+Brian Kernighan's Algorithm  https://www.geeksforgeeks.org/dsa/count-set-bits-in-an-integer/
+
+
+// reference resources
+https://www.reddit.com/r/ComputerChess/comments/18mf23g/does_anyone_have_a_good_resource_to_explain_magic/
+
+
+///STEps
+1.Build it follow https://github.com/raylib-extras/raylib-quickstart
+scroll down and build it 
+
+board represntation
+GUI
+Pruning-and MInMAx
+1v1
+
+locations of the kings
+all white pawns
+all black pawns
+
+like all white pieces
+
+one bitboard per square for all pieces attacking the square
+inverse bitboard for all squares attacked by a piece for each square containing a piece.
+
+attack vectors??
+
+auxiliary bitboards for the sliding pieces.
+Sliding pieces in chess (rooks, bishops, and queens),
+These bitboards rotate the board occupancy configuration by 90 degrees, 45 degrees, and/or 315 degrees.
+The rotation of a bitboard, however, is an inelegant transformation that can take dozens of instructions.
+
+
+INTERSTING!!!!
+Magic bitboards
+Early chess engines used ray-casting loops, rotated bitboards, or direct hashing. Now, most chess engines use magic bitboards. Magic bitboards use a multiply-right-shift perfect hashing algorithm to directly map sliding piece (Rook, Bishop, or Queen) occupancy to attack patterns in a single constant time lookup O(1).[6]
+
+Magic bitboard architectures mostly fall into two structural implementations:
+
+    Plain Magics: Uses fixed and uniform multidimensional array sizes across all squares. While straightforward, it requires approximately 2.3 MB of total memory.[11]
+    Fancy Magics: Sizes lookup tables dynamically stored according to the exact number of relevant bits (2^n) needed for each individual square. This reduces the total memory footprint to under 840 KB.[11]
+
+Like other perfect hashing schemes, generating valid magic numbers requires a pre-initialization process using Monte Carlo trial-and-error algorithms.[11] While magic bitboards are the primary lookup method in modern engines like Stockfish, their memory access patterns can occasionally cause cache misses on processors with a smaller cache.[12]
+
+
+initially Create BIt MAsk? foir all types of pieces abd Keep Updating them as Game goes On?
+-White Pawn
+-White King
+-White Queen
+-White Bishop
+-White Knight
+-White Rook!!
+
+-black Pawn
+-black King
+-black Queen
+-black Bishop
+-black Knight
+-black Rook!!
+
+how to pack bits into a byte using the Pack K Bits block, and how to unpack a byte into bits, using the Unpack K Bits block. 
+Packing Bits
+
+
+summary 
+1.Have a BitBoard that marks all White peices On board as 1 
+2.Have a BitBoard that marks all Black peices On board as 1 
+3.Bit Board for Location of Pawn
+4.Bit Board for Location of King
+5.Bit Board for Location of Kinght
+6.Bit Board for Location of Queen
+7.Bit Board for Location of Bishob
+8.Bit Board for Location of Rook
+
+?? attack Bit Boards ??
+1.pawn
+2.King
+3.Knight
+
+// SLidinG peices
+4.Queen
+5.Rook
+6.Bishob
+
