@@ -20,12 +20,12 @@ std::vector<std::vector<float>> board::postionToCordinates(float pos_x, float po
         for (int j = 0; j < 8; j++)
         {
             postion_to_cordinates_.push_back({pos_x, pos_y});
+            std::cout << "{" << pos_x << ", " << pos_y << "} ";
             pos_x += square_size;
-            pos_y += square_size;
         }
         pos_x = initial_pos_x;
+        pos_y += square_size;
     }
-
     return postion_to_cordinates_;
 }
 
@@ -50,6 +50,7 @@ void board::print_terminal()
     // masks must be utilized and print in terminal wp wR wH wB wK wQ  bp bR bH bB bK bQ
     for (int i = 0; i < 64; i++)
     {
+        
         uint64_t read_mask = 0x1; // 0000000000000000000000000000000000000000000000000000000000000000
         // ex: i = 0 let first one be 1
         read_mask = 1ULL << i;
@@ -186,7 +187,11 @@ std::vector<bool> board::drawGamepiecesOnScreen(float pos_x, float pos_y, float 
         // ex: i = 0 let first one be 1
         read_mask = 1ULL << i;
         std::vector<float> cords_raw = postion_to_cordinates[i];
-        Vector2 cords = {cords_raw[0], cords_raw[1]};
+        Vector2 cords;
+        
+        cords.x = postion_to_cordinates[i][0];
+        cords.y = postion_to_cordinates[i][1];
+
         piece_exists_mp.push_back(true);
 
         // exists if yes color else continue
@@ -194,7 +199,7 @@ std::vector<bool> board::drawGamepiecesOnScreen(float pos_x, float pos_y, float 
         if (white_pieces_mask & read_mask) 
             iswhite = true;
         else if (black_pieces_mask & read_mask) 
-            iswhite = true;
+            iswhite = false;
         else    
             piece_exists_mp[i] = false;
 

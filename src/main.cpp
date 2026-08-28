@@ -21,6 +21,7 @@ int main(void)
         ClearBackground(WHITE);
         std::vector<bool> piece_exists_mp = gameBoard.drawGamepiecesOnScreen(pos_x, pos_y, square_size); // Render Pieces
         // gameBoard.drawGameBoardOnScreen(pos_x, pos_y, square_size,piece_exists_mp);
+        EndDrawing();
     }
 
     /*=======================Places Peices On BOard==========================*/
