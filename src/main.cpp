@@ -22,7 +22,7 @@ int main(void)
         ClearBackground(chess_board_backGround);
         BeginDrawing();
         gameBoard.drawGameBoardOnScreen(pos_x, pos_y, square_size);
-        std::vector<bool> piece_exists_mp_ = gameBoard.drawGamepiecesOnScreen(pos_x, pos_y, square_size); // Render Pieces
+        gameBoard.drawGamepiecesOnScreen(pos_x, pos_y, square_size); // Render Pieces
         EndDrawing();
     }
 

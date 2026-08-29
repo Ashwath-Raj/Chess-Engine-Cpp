@@ -142,7 +142,7 @@ void board::drawGameBoardOnScreen(float pos_x, float pos_y, float square_size)
     
 }
 
-std::vector<bool> board::drawGamepiecesOnScreen(float pos_x, float pos_y, float square_size)
+void board::drawGamepiecesOnScreen(float pos_x, float pos_y, float square_size)
 {
     // generate cordinates to render peices
     // domne in intialize static std::vector<std::vector<float>> postion_to_cordinates = postionToCordinates(pos_x, pos_y, square_size);
@@ -196,7 +196,6 @@ std::vector<bool> board::drawGamepiecesOnScreen(float pos_x, float pos_y, float 
         uint64_t read_mask = 0x1; // 0000000000000000000000000000000000000000000000000000000000000000
         // ex: i = 0 let first one be 1
         read_mask = 1ULL << i;
-        std::vector<float> cords_raw = postion_to_cordinates[i];
         Vector2 cords;
 
         cords.x = postion_to_cordinates[i][0];
@@ -257,8 +256,6 @@ std::vector<bool> board::drawGamepiecesOnScreen(float pos_x, float pos_y, float 
             else
                 DrawTextureV(black_rook_texure, cords, WHITE);
         }
-        if (i < 8)
-            std ::cout << "{" << postion_to_cordinates[i][0] << ", " << postion_to_cordinates[i][1] << "}  ";
     }
     
     // UnloadTexture(black_pawn_texure);
@@ -274,6 +271,6 @@ std::vector<bool> board::drawGamepiecesOnScreen(float pos_x, float pos_y, float 
     // UnloadTexture(white_knight_texure);
     // UnloadTexture(white_bishop_texure);
 
-    return piece_exists_mp;
+    
 }
 // DrawTextureV(texure, {x, y}, WHITE)
