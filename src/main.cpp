@@ -21,8 +21,9 @@ int main(void)
     {
         ClearBackground(chess_board_backGround);
         BeginDrawing();
-        gameBoard.drawGameBoardOnScreen(pos_x, pos_y, square_size);
+        gameBoard.drawGameBoardOnScreen(pos_x, pos_y, square_size); // Render Board
         gameBoard.drawGamepiecesOnScreen(pos_x, pos_y, square_size); // Render Pieces
+        // Render Moves have a click trigger for effeciency 
         EndDrawing();
     }
 

@@ -10,6 +10,21 @@ board::board()
     number_of_squares = 8;
 }
 
+std::vector<std::vector<float>> board::cursorpostionToCordinates(float pos_x, float pos_y, float square_size) {
+    std::vector<std::vector<float>> cursorposition_to_cordinate_;
+    float initial_pos_x = pos_x;
+    for (int i = 0; i <= 8; i++)
+    {
+        for (int j = 0; j <= 8; j++)
+        {
+            cursorposition_to_cordinate_.push_back({pos_x, pos_y});
+            pos_x += square_size;
+        }
+        pos_x = initial_pos_x;
+        pos_y += square_size;
+    }
+    return cursorposition_to_cordinate_;
+}
 std::vector<std::vector<float>> board::postionToCordinates(float pos_x, float pos_y, float square_size)
 {
     // generate cordinates to render peices
@@ -57,6 +72,9 @@ void board::initialize(float pos_x, float pos_y, float square_size, bool north_i
     }
 
     postion_to_cordinates = postionToCordinates(pos_x, pos_y, square_size);
+    cursorposition_to_cordinate = cursorpostionToCordinates(pos_x, pos_y, square_size);
+    
+    cursorposition_to_cordinate;
 }
 
 void board::print_terminal()
@@ -102,7 +120,7 @@ void board::drawGameBoardOnScreen(float pos_x, float pos_y, float square_size)
     Color chess_board_green{118, 150, 86, 255};
 
     // Draw Chess Board
-   
+
     // ClearBackground(chess_board_backGround);
     bool north_is_white = true; // Black North / pc bot is  black
     pos_x = 100, pos_y = 10;
@@ -138,8 +156,7 @@ void board::drawGameBoardOnScreen(float pos_x, float pos_y, float square_size)
         pos_y += square_size;
     }
 
-        /*=======================Places Pieces On BOard==========================*/
-    
+    /*=======================Places Pieces On BOard==========================*/
 }
 
 void board::drawGamepiecesOnScreen(float pos_x, float pos_y, float square_size)
@@ -257,7 +274,7 @@ void board::drawGamepiecesOnScreen(float pos_x, float pos_y, float square_size)
                 DrawTextureV(black_rook_texure, cords, WHITE);
         }
     }
-    
+
     // UnloadTexture(black_pawn_texure);
     // UnloadTexture(black_king_texure);
     // UnloadTexture(black_queen_texure);
@@ -270,7 +287,27 @@ void board::drawGamepiecesOnScreen(float pos_x, float pos_y, float square_size)
     // UnloadTexture(white_rook_texure);
     // UnloadTexture(white_knight_texure);
     // UnloadTexture(white_bishop_texure);
+}
+
+void board::detectPlayerMove(float pos_x, float pos_y, float square_size, bool is_player_turn, Vector2 mouse_pos)
+{
+
+    // check if ist his turn and check if he pressed GameBoard (if outof Bounds Return )
+    if ((!is_player_turn) || !((mouse_pos.x >= pos_x && mouse_pos.x <= pos_x + square_size * 8) && (mouse_pos.y >= pos_y && mouse_pos.y <= pos_y + square_size * 8)))
+        return;
+
+    // Actual MOve
 
     
+    /*To move
+
+    check if its player Turn//done
+    1.Select->SEE if peice Exists (black or white mask)
+    2.IF exists Now another sqaure as move (see if aldr a peice exists there?)
+    3.IF exists kill it and add to score and display killed peice in appropriate section there
+    4.else Just move it there
+    5.DOne Wait for Computer To play
+
+    .DOne?
+    */
 }
-// DrawTextureV(texure, {x, y}, WHITE)
