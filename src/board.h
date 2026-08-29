@@ -9,7 +9,7 @@ public:
     void initialize(float pos_x, float pos_y, float square_size, bool north_is_white);
     void print_terminal();
     std::vector<bool> drawGamepiecesOnScreen(float pos_x, float pos_y, float square_size);
-    void drawGameBoardOnScreen(float pos_x, float pos_y, float square_size, std::vector<bool>& piece_exists_mp);
+    void drawGameBoardOnScreen(float pos_x, float pos_y, float square_size);
     std::vector<std::vector<float>> postionToCordinates(float pos_x, float pos_y, float square_size);
 
 private:

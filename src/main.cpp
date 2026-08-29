@@ -8,6 +8,7 @@ int main(void)
     board gameBoard; // Board Class Instance
     std::cout << "Starting the Game" << std::endl;
     int game_window_width = 0, game_window_height = 0;
+    Color chess_board_backGround{29, 54, 0, 255};
 
     const char *title = "Chess ENgine CPP";
     InitWindow(game_window_width, game_window_height, title);
@@ -18,9 +19,10 @@ int main(void)
     gameBoard.initialize(pos_x, pos_y, square_size, north_is_white);
     while (!WindowShouldClose())
     {
-        ClearBackground(WHITE);
-        std::vector<bool> piece_exists_mp = gameBoard.drawGamepiecesOnScreen(pos_x, pos_y, square_size); // Render Pieces
-        gameBoard.drawGameBoardOnScreen(pos_x, pos_y, square_size, piece_exists_mp);
+        ClearBackground(chess_board_backGround);
+        BeginDrawing();
+        gameBoard.drawGameBoardOnScreen(pos_x, pos_y, square_size);
+        std::vector<bool> piece_exists_mp_ = gameBoard.drawGamepiecesOnScreen(pos_x, pos_y, square_size); // Render Pieces
         EndDrawing();
     }
 

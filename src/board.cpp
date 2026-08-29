@@ -94,60 +94,52 @@ void board::print_terminal()
             std::cout << std::endl;
     }
 }
-void board::drawGameBoardOnScreen(float pos_x, float pos_y, float square_size, std::vector<bool> &piece_exists_mp)
+void board::drawGameBoardOnScreen(float pos_x, float pos_y, float square_size)
 {
     /*=======================Draw Chess BOard Only==========================*/
     Color chess_board_white{238, 238, 210, 255};
     Color chess_board_selection{186, 202, 68, 255};
-    Color chess_board_backGround{29, 54, 0, 255};
     Color chess_board_green{118, 150, 86, 255};
 
     // Draw Chess Board
-    while (!WindowShouldClose())
-    {
-        BeginDrawing();
-        // ClearBackground(chess_board_backGround);
-        bool north_is_white = true; // Black North / pc bot is  black
-        pos_x = 100, pos_y = 10;
-        int initial_pos_x = pos_x;
-        square_size = 128.0;
+   
+    // ClearBackground(chess_board_backGround);
+    bool north_is_white = true; // Black North / pc bot is  black
+    pos_x = 100, pos_y = 10;
+    int initial_pos_x = pos_x;
+    square_size = 128.0;
 
-        int sq_num = 0;
-        for (int i = 0; i < 8; i++)
+    int sq_num = 0;
+    for (int i = 0; i < 8; i++)
+    {
+        if (north_is_white)
         {
-            if (north_is_white)
-            {
-                for (int j = 0; j < 4; j++)
-                { // loop draws all cols of a row
-                    if (!piece_exists_mp[sq_num++])
-                        DrawRectangleV({pos_x, pos_y}, {square_size, square_size}, chess_board_green);
-                    pos_x += square_size;
-                    if (!piece_exists_mp[sq_num++])
-                        DrawRectangleV({pos_x, pos_y}, {square_size, square_size}, chess_board_white);
-                    pos_x += square_size;
-                }
-                north_is_white = false;
+            for (int j = 0; j < 4; j++)
+            { // loop draws all cols of a row
+                DrawRectangleV({pos_x, pos_y}, {square_size, square_size}, chess_board_green);
+                pos_x += square_size;
+                DrawRectangleV({pos_x, pos_y}, {square_size, square_size}, chess_board_white);
+                pos_x += square_size;
             }
-            else
-            {
-                for (int j = 0; j < 4; j++)
-                { // loop draws all cols of a row
-                    if (!piece_exists_mp[sq_num++])
-                        DrawRectangleV({pos_x, pos_y}, {square_size, square_size}, chess_board_white);
-                    pos_x += square_size;
-                    if (!piece_exists_mp[sq_num++])
-                        DrawRectangleV({pos_x, pos_y}, {square_size, square_size}, chess_board_green);
-                    pos_x += square_size;
-                }
-                north_is_white = true;
-            }
-            pos_x = initial_pos_x;
-            pos_y += square_size;
+            north_is_white = false;
         }
-        EndDrawing();
+        else
+        {
+            for (int j = 0; j < 4; j++)
+            { // loop draws all cols of a row
+                DrawRectangleV({pos_x, pos_y}, {square_size, square_size}, chess_board_white);
+                pos_x += square_size;
+                DrawRectangleV({pos_x, pos_y}, {square_size, square_size}, chess_board_green);
+                pos_x += square_size;
+            }
+            north_is_white = true;
+        }
+        pos_x = initial_pos_x;
+        pos_y += square_size;
+    }
 
         /*=======================Places Pieces On BOard==========================*/
-    }
+    
 }
 
 std::vector<bool> board::drawGamepiecesOnScreen(float pos_x, float pos_y, float square_size)
@@ -223,7 +215,7 @@ std::vector<bool> board::drawGamepiecesOnScreen(float pos_x, float pos_y, float 
 
         if (pawn_mask & read_mask)
         { // pawn
-            if(i == 7)
+            if (i == 7)
                 std::cout << "reacheddest";
             if (iswhite)
                 DrawTextureV(white_pawn_texure, cords, WHITE);
@@ -268,19 +260,20 @@ std::vector<bool> board::drawGamepiecesOnScreen(float pos_x, float pos_y, float 
         if (i < 8)
             std ::cout << "{" << postion_to_cordinates[i][0] << ", " << postion_to_cordinates[i][1] << "}  ";
     }
-    return piece_exists_mp;
+    
+    // UnloadTexture(black_pawn_texure);
+    // UnloadTexture(black_king_texure);
+    // UnloadTexture(black_queen_texure);
+    // UnloadTexture(black_rook_texure);
+    // UnloadTexture(black_knight_texure);
+    // UnloadTexture(black_bishop_texure);
+    // UnloadTexture(white_pawn_texure);
+    // UnloadTexture(white_king_texure);
+    // UnloadTexture(white_queen_texure);
+    // UnloadTexture(white_rook_texure);
+    // UnloadTexture(white_knight_texure);
+    // UnloadTexture(white_bishop_texure);
 
-    UnloadTexture(black_pawn_texure);
-    UnloadTexture(black_king_texure);
-    UnloadTexture(black_queen_texure);
-    UnloadTexture(black_rook_texure);
-    UnloadTexture(black_knight_texure);
-    UnloadTexture(black_bishop_texure);
-    UnloadTexture(white_pawn_texure);
-    UnloadTexture(white_king_texure);
-    UnloadTexture(white_queen_texure);
-    UnloadTexture(white_rook_texure);
-    UnloadTexture(white_knight_texure);
-    UnloadTexture(white_bishop_texure);
+    return piece_exists_mp;
 }
 // DrawTextureV(texure, {x, y}, WHITE)
