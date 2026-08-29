@@ -10,18 +10,19 @@ board::board()
     number_of_squares = 8;
 }
 
-std::vector<std::vector<float>> board::cursorpostionToCordinates(float pos_x, float pos_y, float square_size) {
-    std::vector<std::vector<float>> cursorposition_to_cordinate_;
+std::vector<float> board::cursorpostionToCordinates(float pos_x, float square_size) {
+    std::vector<float> cursorposition_to_cordinate_;
     float initial_pos_x = pos_x;
     for (int i = 0; i <= 8; i++)
     {
         for (int j = 0; j <= 8; j++)
         {
-            cursorposition_to_cordinate_.push_back({pos_x, pos_y});
+            // cursorposition_to_cordinate_.push_back({pos_x, pos_y});
+            // std::cout << "{" << pos_x << ", " << pos_y << "} ";
             pos_x += square_size;
         }
         pos_x = initial_pos_x;
-        pos_y += square_size;
+         JJpos_y += square_size;
     }
     return cursorposition_to_cordinate_;
 }
@@ -35,7 +36,7 @@ std::vector<std::vector<float>> board::postionToCordinates(float pos_x, float po
         for (int j = 0; j < 8; j++)
         {
             postion_to_cordinates_.push_back({pos_x, pos_y});
-            std::cout << "{" << pos_x << ", " << pos_y << "} ";
+            // std::cout << "{" << pos_x << ", " << pos_y << "} ";
             pos_x += square_size;
         }
         pos_x = initial_pos_x;
@@ -72,7 +73,7 @@ void board::initialize(float pos_x, float pos_y, float square_size, bool north_i
     }
 
     postion_to_cordinates = postionToCordinates(pos_x, pos_y, square_size);
-    cursorposition_to_cordinate = cursorpostionToCordinates(pos_x, pos_y, square_size);
+    cursorposition_to_cordinate = cursorpostionToCordinates(pos_x, square_size);
     
     cursorposition_to_cordinate;
 }
@@ -296,7 +297,9 @@ void board::detectPlayerMove(float pos_x, float pos_y, float square_size, bool i
     if ((!is_player_turn) || !((mouse_pos.x >= pos_x && mouse_pos.x <= pos_x + square_size * 8) && (mouse_pos.y >= pos_y && mouse_pos.y <= pos_y + square_size * 8)))
         return;
 
-    // Actual MOve
+    // ActualY MOve IT
+
+
 
     
     /*To move
